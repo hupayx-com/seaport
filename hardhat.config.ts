@@ -9,6 +9,9 @@ import "solidity-coverage";
 import { TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS } from "hardhat/builtin-tasks/task-names";
 
 dotenv.config();
+require("./scripts/deploy.js");
+
+const { HPX_JSON_RPC_URL, RINKEBY_ALCHEMY_KEY, ACCOUNT_PRIVATE_KEY } = process.env;
 
 // Filter Reference Contracts
 subtask(TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS).setAction(
@@ -59,10 +62,19 @@ const config: HardhatUserConfig = {
       },
     },
   },
+  defaultNetwork: `hpx`,
   networks: {
     hardhat: {
       blockGasLimit: 30_000_000,
       throwOnCallFailures: false,
+    },
+    hpx: {
+      url: `${HPX_JSON_RPC_URL}`,
+      accounts: [`0x${ACCOUNT_PRIVATE_KEY}`]
+    },
+    rinkeby: {
+      url: `https://eth-rinkeby.alchemyapi.io/v2/${RINKEBY_ALCHEMY_KEY}`,
+      accounts: [`0x${ACCOUNT_PRIVATE_KEY}`]
     },
   },
   gasReporter: {
