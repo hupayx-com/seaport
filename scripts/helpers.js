@@ -83,5 +83,6 @@ module.exports = {
 	getContractName,
 	getContractAddressConduit,
 	getEnvVariable,
+	getProvider,
 	csvToJSON
 }
