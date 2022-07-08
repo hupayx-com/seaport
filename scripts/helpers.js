@@ -36,14 +36,13 @@ function getProvider() {
 
 // Helper method for fetching a wallet account using an environment variable for the PK
 function getAccount() {
-	let account = new ethers.Wallet(getEnvVariable("ACCOUNT_PRIVATE_KEY"), getProvider());
-
-	return account;
+	return new ethers.Wallet(getEnvVariable("ACCOUNT_PRIVATE_KEY"), getProvider());
 }
 
 // Helper method for fetching a contract instance at a given address
 function getContract(hre, contractName) {
-	return getContractAt(hre, getContractName(contractName), getEnvVariable("CONTRACT_ADDRESS_"+cName), getAccount());
+	const cName = getContractName(contractName);
+	return getContractAt(hre, cName, getEnvVariable("CONTRACT_ADDRESS_"+cName), getAccount());
 }
 
 // Helper method for fetching a current contract name

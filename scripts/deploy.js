@@ -1,4 +1,5 @@
 const { task } = require("hardhat/config");
+require('dotenv').config();
 const { getAccount, getContractName, getContractAddressConduit } = require("./helpers");
 
 task("accounts", "Prints the list of accounts").setAction(async function (taskArgs, hre) {
@@ -17,6 +18,7 @@ task("check-balance", "Prints out the balance of your account")
 
 task("deploy", "Deploys the " + getContractName() + ".sol contract")
 .addOptionalParam("name", "The contract name to create")
+.addOptionalParam("param", "The parameter of contract constructor to create")
 .setAction(async function (taskArgs, hre) {
 	console.log(`Task deploy start. The contract name is ` + getContractName(taskArgs.name));
 

@@ -2,14 +2,14 @@ import * as dotenv from "dotenv";
 
 import { HardhatUserConfig, subtask } from "hardhat/config";
 import "@nomiclabs/hardhat-waffle";
-import "@typechain/hardhat";
 import "hardhat-gas-reporter";
-import "solidity-coverage";
 
 import { TASK_COMPILE_SOLIDITY_GET_SOURCE_PATHS } from "hardhat/builtin-tasks/task-names";
 
 dotenv.config();
 require("./scripts/deploy.js");
+require("./scripts/order.ts");
+require("./scripts/transfer.js");
 
 const { HPX_JSON_RPC_URL, RINKEBY_ALCHEMY_KEY, ACCOUNT_PRIVATE_KEY } = process.env;
 
